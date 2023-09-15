@@ -1,0 +1,519 @@
+{
+  "templateId" : "nasjonal_informasjonsmodell_risiko_overfolsomhetsreaksjon",
+  "semVer" : "0.0.2",
+  "version" : "2.3",
+  "defaultLanguage" : "nb",
+  "languages" : [ "en", "nb" ],
+  "tree" : {
+    "id" : "nasjonal_informasjonsmodell_risiko_for_overfølsomhetsreaksjon",
+    "name" : "Nasjonal informasjonsmodell: Risiko for overfølsomhetsreaksjon",
+    "localizedName" : "Nasjonal informasjonsmodell: Risiko for overfølsomhetsreaksjon",
+    "rmType" : "EVALUATION",
+    "nodeId" : "openEHR-EHR-EVALUATION.adverse_reaction_risk.v2",
+    "min" : 1,
+    "max" : 1,
+    "localizedNames" : {
+      "en" : "Nasjonal informasjonsmodell risiko for overfølsomhetsreaksjon",
+      "nb" : "Nasjonal informasjonsmodell: Risiko for overfølsomhetsreaksjon"
+    },
+    "localizedDescriptions" : {
+      "en" : "Clinical assessment of the propensity for an individual to experience a harmful or undesirable physiological response if exposed, or re-exposed, to a substance.",
+      "nb" : "Klinisk vurdering av tendensen for et individ til å oppleve en skadelig eller uønsket fysiologisk reaksjon ved eksponering eller re-eksponering for en substans."
+    },
+    "annotations" : {
+      "comment" : "Dette templatet er utarbeidet som del av openEHR Norges høringssvar for nasjonal informasjonsmodell for overfølsomhetsreaksjoner: https://www.ehelse.no/horinger/Nasjonal-informasjonsmodell-for-overfolsomhetsreaksjoner"
+    },
+    "aqlPath" : "",
+    "children" : [ {
+      "id" : "code_agent_agens_code",
+      "name" : "Code/Agent/Agens [code]",
+      "localizedName" : "Code/Agent/Agens [code]",
+      "rmType" : "DV_CODED_TEXT",
+      "nodeId" : "at0002",
+      "min" : 1,
+      "max" : 1,
+      "localizedNames" : {
+        "en" : "Substance",
+        "nb" : "Code/Agent/Agens [code]"
+      },
+      "localizedDescriptions" : {
+        "en" : "Identification of a substance, or substance class, that is considered to put the individual at risk of an adverse reaction event.",
+        "nb" : "Den spesifikke substansen eller substansklassen som setter individet i faresonen for en reaksjonshendelse."
+      },
+      "annotations" : {
+        "comment" : "Feltet tillater en registrering av enten en spesifikk substans eller en substansklasse. En substans kan være en blanding av enkeltsubstanser, for eksempel et legemiddelprodukt."
+      },
+      "aqlPath" : "/data[at0001]/items[at0002,'Code/Agent/Agens [code]']/value",
+      "inputs" : [ {
+        "suffix" : "code",
+        "type" : "TEXT"
+      }, {
+        "suffix" : "value",
+        "type" : "TEXT"
+      } ]
+    }, {
+      "id" : "klinisk_status_clinicalstatus",
+      "name" : "Klinisk status [clinicalStatus]",
+      "localizedName" : "Klinisk status [clinicalStatus]",
+      "rmType" : "DV_CODED_TEXT",
+      "nodeId" : "at0130",
+      "min" : 0,
+      "max" : 1,
+      "localizedNames" : {
+        "en" : "Active/inactive status",
+        "nb" : "Klinisk status [clinicalStatus]"
+      },
+      "localizedDescriptions" : {
+        "en" : "Status about whether the adverse reaction risk statement is active or inactive.",
+        "nb" : "Status for hvorvidt risikoen for overfølsomhetsreaksjon er aktiv eller inaktiv."
+      },
+      "aqlPath" : "/data[at0001]/items[at0130,'Klinisk status [clinicalStatus]']/value",
+      "inputs" : [ {
+        "suffix" : "code",
+        "type" : "TEXT",
+        "terminology" : "//fhir.hl7.org/ValueSet/$expand?url=http://hl7.org/fhir/ValueSet/allergyintolerance-clinical"
+      }, {
+        "suffix" : "value",
+        "type" : "TEXT",
+        "terminology" : "//fhir.hl7.org/ValueSet/$expand?url=http://hl7.org/fhir/ValueSet/allergyintolerance-clinical"
+      } ]
+    }, {
+      "id" : "bekreftelse_verificationstatus",
+      "name" : "Bekreftelse [verificationStatus]",
+      "localizedName" : "Bekreftelse [verificationStatus]",
+      "rmType" : "DV_CODED_TEXT",
+      "nodeId" : "at0063",
+      "min" : 0,
+      "max" : 1,
+      "localizedNames" : {
+        "en" : "Verification status",
+        "nb" : "Bekreftelse [verificationStatus]"
+      },
+      "localizedDescriptions" : {
+        "en" : "Assertion about the certainty of the propensity, or potential future risk, of the identified 'Substance' to cause a reaction.",
+        "nb" : "Påstand om hvor sikkert det er at individet har en tendens eller framtidig risiko på få en overfølsomhetsreaksjon på den angitte substansen."
+      },
+      "annotations" : {
+        "comment" : "Beslutningsstøttesystemer vil typisk reagere på statusene \"Ubekreftet\" og \"Bekreftet\", og ignorere \"Avkreftet\". Kliniske systemer kan velge å ikke vise overfølsomhetsreaksjoner som har status \"Avkreftet\" i listen over overfølsomhetsreaksjoner. Imidlertid kan \"Avkreftet\" være nyttig for samstemming av listen over overfølsomhetsreaksjoner, eller ved kommunikasjon mellom systemer. Noen implementasjoner kan velge å gjøre dette elementet obligatorisk. Fritekst-datatypen tillater lokal variasjon ved å gjøre det mulig å legge til andre verdisett i et templat. I disse tilfellene er det anbefalt at verdiene kodes med en terminologi."
+      },
+      "aqlPath" : "/data[at0001]/items[at0063,'Bekreftelse [verificationStatus]']/value",
+      "inputs" : [ {
+        "suffix" : "code",
+        "type" : "TEXT",
+        "terminology" : "//fhir.hl7.org/ValueSet/$expand?url=http://hl7.org/fhir/ValueSet/allergyintolerance-verification"
+      }, {
+        "suffix" : "value",
+        "type" : "TEXT",
+        "terminology" : "//fhir.hl7.org/ValueSet/$expand?url=http://hl7.org/fhir/ValueSet/allergyintolerance-verification"
+      } ]
+    }, {
+      "id" : "alvorlighetsgrad_av_allergi_criticality",
+      "name" : "Alvorlighetsgrad av allergi  [criticality]",
+      "localizedName" : "Alvorlighetsgrad av allergi  [criticality]",
+      "rmType" : "DV_CODED_TEXT",
+      "nodeId" : "at0101",
+      "min" : 0,
+      "max" : 1,
+      "localizedNames" : {
+        "en" : "Criticality",
+        "nb" : "Alvorlighetsgrad av allergi  [criticality]"
+      },
+      "localizedDescriptions" : {
+        "en" : "An indication of the potential for critical system organ damage or life threatening consequence.",
+        "nb" : "En indikasjon på potensialet for kritisk organskade eller livstruende konsekvenser."
+      },
+      "annotations" : {
+        "comment" : "Dette kan ses på som en vurdering av et \"worst case scenario\". I de fleste kontekster vil \"Lav\" være en standardverdi."
+      },
+      "aqlPath" : "/data[at0001]/items[at0101,'Alvorlighetsgrad av allergi  [criticality]']/value",
+      "inputs" : [ {
+        "suffix" : "code",
+        "type" : "TEXT",
+        "terminology" : "//fhir.hl7.org/ValueSet/$expand?url=http://hl7.org/fhir/ValueSet/reaction-event-severity"
+      }, {
+        "suffix" : "value",
+        "type" : "TEXT",
+        "terminology" : "//fhir.hl7.org/ValueSet/$expand?url=http://hl7.org/fhir/ValueSet/reaction-event-severity"
+      } ]
+    }, {
+      "id" : "kategori_category",
+      "name" : "Kategori [category]",
+      "localizedName" : "Kategori [category]",
+      "rmType" : "DV_CODED_TEXT",
+      "nodeId" : "at0120",
+      "min" : 0,
+      "max" : 1,
+      "localizedNames" : {
+        "en" : "Category",
+        "nb" : "Kategori [category]"
+      },
+      "localizedDescriptions" : {
+        "en" : "Category of the identified 'Substance'.",
+        "nb" : "Kategorien til den angitte substansen."
+      },
+      "annotations" : {
+        "comment" : "Dette dataelementet er inkludert fordi det brukes i enkelte kliniske systemer. Dataene kan avledes fra substansen dersom man bruker hierarkiske kodesystemer, og er i slike tilfeller overflødig."
+      },
+      "aqlPath" : "/data[at0001]/items[at0120,'Kategori [category]']/value",
+      "inputs" : [ {
+        "suffix" : "code",
+        "type" : "TEXT",
+        "terminology" : "//fhir.hl7.org/ValueSet/$expand?url=http://hl7.org/fhir/ValueSet/allergy-intolerance-category"
+      }, {
+        "suffix" : "value",
+        "type" : "TEXT",
+        "terminology" : "//fhir.hl7.org/ValueSet/$expand?url=http://hl7.org/fhir/ValueSet/allergy-intolerance-category"
+      } ]
+    }, {
+      "id" : "type_type",
+      "name" : "Type [type]",
+      "localizedName" : "Type [type]",
+      "rmType" : "DV_CODED_TEXT",
+      "nodeId" : "at0058",
+      "min" : 0,
+      "max" : 1,
+      "localizedNames" : {
+        "en" : "Reaction mechanism",
+        "nb" : "Type [type]"
+      },
+      "localizedDescriptions" : {
+        "en" : "Identification of the underlying physiological mechanism for the adverse reaction.",
+        "nb" : "Overfølsomhetsreaksjonens underliggende mekanisme."
+      },
+      "aqlPath" : "/data[at0001]/items[at0058,'Type [type]']/value",
+      "inputs" : [ {
+        "suffix" : "code",
+        "type" : "TEXT",
+        "terminology" : "//fhir.hl7.org/ValueSet/$expand?url=http://hl7.org/fhir/ValueSet/allergy-intolerance-type"
+      }, {
+        "suffix" : "value",
+        "type" : "TEXT",
+        "terminology" : "//fhir.hl7.org/ValueSet/$expand?url=http://hl7.org/fhir/ValueSet/allergy-intolerance-type"
+      } ]
+    }, {
+      "id" : "reaksjon",
+      "name" : "Reaksjon",
+      "localizedName" : "Reaksjon",
+      "rmType" : "CLUSTER",
+      "nodeId" : "openEHR-EHR-CLUSTER.adverse_reaction_event.v1",
+      "min" : 0,
+      "max" : -1,
+      "localizedNames" : {
+        "en" : "Adverse reaction event",
+        "nb" : "Reaksjon"
+      },
+      "localizedDescriptions" : {
+        "en" : "Information about a specific adverse reaction event caused by exposure to a specific substance.",
+        "nb" : "Informasjon om en spesifikk overfølsomhetsreaksjonshendelse forårsaket av eksponering for en spesifikk substans."
+      },
+      "aqlPath" : "/data[at0001]/items[openEHR-EHR-CLUSTER.adverse_reaction_event.v1,'Reaksjon']",
+      "children" : [ {
+        "id" : "spesifikk_substans",
+        "name" : "Spesifikk substans",
+        "localizedName" : "Spesifikk substans",
+        "rmType" : "DV_TEXT",
+        "nodeId" : "at0001",
+        "min" : 1,
+        "max" : 1,
+        "localizedNames" : {
+          "en" : "Specific substance",
+          "nb" : "Spesifikk substans"
+        },
+        "localizedDescriptions" : {
+          "en" : "The substance considered to be responsible for the specific adverse reaction event.",
+          "nb" : "Substansen som anses for å være årsaken til den spesifikke reaksjonshendelsen."
+        },
+        "annotations" : {
+          "comment" : "For eksempel \"Amoxicillin\". I feltet \"Spesifikk substans\" kan kun en spesifikk substans, og ikke en substansgruppe, registreres. En substans kan være en blanding av enkeltsubstanser, for eksempel et legemiddelprodukt. Om verdien som registreres i \"Substans\" i foreldrearketypen er en spesifikk substans kan verdien dupliseres i dette dataelementet. Det anbefales sterkt at \"Spesifikk substans\" kodes med en terminologi, for eksempel FEST, ATC eller SNOMED CT."
+        },
+        "aqlPath" : "/data[at0001]/items[openEHR-EHR-CLUSTER.adverse_reaction_event.v1,'Reaksjon']/items[at0001]/value",
+        "inputs" : [ {
+          "type" : "TEXT"
+        } ]
+      }, {
+        "id" : "sikkerhet",
+        "name" : "Sikkerhet",
+        "localizedName" : "Sikkerhet",
+        "rmType" : "DV_CODED_TEXT",
+        "nodeId" : "at0002",
+        "min" : 0,
+        "max" : 1,
+        "localizedNames" : {
+          "en" : "Certainty",
+          "nb" : "Sikkerhet"
+        },
+        "localizedDescriptions" : {
+          "en" : "The degree of clinical certainty that the 'Manifestation' in this reaction event was caused by exposure to the identified 'Specific substance'.",
+          "nb" : "Graden av klinisk sikkerhet om at reaksjonsmanifestasjonen av denne reaksjonshendelsen ble forårsaket av eksponering for den angitte substansen."
+        },
+        "annotations" : {
+          "comment" : "Fritekst-datatypen tillater lokal variasjon ved å gjøre det mulig å legge til andre verdisett i et templat. I disse tilfellene er det anbefalt at verdiene kodes med en terminologi."
+        },
+        "aqlPath" : "/data[at0001]/items[openEHR-EHR-CLUSTER.adverse_reaction_event.v1,'Reaksjon']/items[at0002]/value",
+        "inputs" : [ {
+          "suffix" : "code",
+          "type" : "TEXT",
+          "terminology" : "//fhir.hl7.org/ValueSet/$expand?url=http://hl7.org/fhir/ValueSet/allergyintolerance-verification"
+        }, {
+          "suffix" : "value",
+          "type" : "TEXT",
+          "terminology" : "//fhir.hl7.org/ValueSet/$expand?url=http://hl7.org/fhir/ValueSet/allergyintolerance-verification"
+        } ]
+      }, {
+        "id" : "manifestasjon_reaction.manifestation",
+        "name" : "Manifestasjon  [reaction.manifestation]",
+        "localizedName" : "Manifestasjon  [reaction.manifestation]",
+        "rmType" : "DV_TEXT",
+        "nodeId" : "at0006",
+        "min" : 1,
+        "max" : -1,
+        "localizedNames" : {
+          "en" : "Manifestation",
+          "nb" : "Manifestasjon  [reaction.manifestation]"
+        },
+        "localizedDescriptions" : {
+          "en" : "Clinical symptoms and/or signs that are observed or associated with the adverse reaction.",
+          "nb" : "Kliniske symptomer og/eller tegn som observeres eller assosieres med reaksjonen."
+        },
+        "annotations" : {
+          "comment" : "Reaksjonsmanifestasjon kan uttrykkes som et enkeltord, en setning eller kort beskrivelse, for eksempel \"kvalme\" eller \"utslett\". \"Ingen reaksjon\" kan være passende når en reaksjon har skjedd tidligere, men ikke skjedde igjen ved ny eksponering. Det foretrekkes at reaksjonsmanifestasjon kodes ved hjelp av en terminologi når dette er mulig. Verdiene som registreres her kan vises i et skjermbilde som en del av en liste over uønskede reaksjoner."
+        },
+        "aqlPath" : "/data[at0001]/items[openEHR-EHR-CLUSTER.adverse_reaction_event.v1,'Reaksjon']/items[at0006,'Manifestasjon  [reaction.manifestation]']/value",
+        "inputs" : [ {
+          "type" : "TEXT"
+        } ]
+      }, {
+        "id" : "reaksjonsbeskrivelse",
+        "name" : "Reaksjonsbeskrivelse",
+        "localizedName" : "Reaksjonsbeskrivelse",
+        "rmType" : "DV_TEXT",
+        "nodeId" : "at0007",
+        "min" : 0,
+        "max" : 1,
+        "localizedNames" : {
+          "en" : "Reaction description",
+          "nb" : "Reaksjonsbeskrivelse"
+        },
+        "localizedDescriptions" : {
+          "en" : "Narrative description about the adverse reaction as a whole, including details of the manifestation if required.",
+          "nb" : "En fritekstbeskrivelse om den uønskede reaksjonen som helhet, inklusiv detaljer om reaksjonsmanifestasjonen dersom påkrevd."
+        },
+        "aqlPath" : "/data[at0001]/items[openEHR-EHR-CLUSTER.adverse_reaction_event.v1,'Reaksjon']/items[at0007]/value",
+        "inputs" : [ {
+          "type" : "TEXT"
+        } ]
+      }, {
+        "id" : "reaksjonsdebut",
+        "name" : "Reaksjonsdebut",
+        "localizedName" : "Reaksjonsdebut",
+        "rmType" : "DV_DATE_TIME",
+        "nodeId" : "at0008",
+        "min" : 0,
+        "max" : 1,
+        "localizedNames" : {
+          "en" : "Onset of reaction",
+          "nb" : "Reaksjonsdebut"
+        },
+        "localizedDescriptions" : {
+          "en" : "The date and/or time of the onset of the reaction.",
+          "nb" : "Dato og tidspunkt for når reaksjonen startet."
+        },
+        "aqlPath" : "/data[at0001]/items[openEHR-EHR-CLUSTER.adverse_reaction_event.v1,'Reaksjon']/items[at0008]/value",
+        "inputs" : [ {
+          "type" : "DATETIME"
+        } ]
+      }, {
+        "id" : "reaksjonens_varighet",
+        "name" : "Reaksjonens varighet",
+        "localizedName" : "Reaksjonens varighet",
+        "rmType" : "DV_DURATION",
+        "nodeId" : "at0009",
+        "min" : 0,
+        "max" : 1,
+        "localizedNames" : {
+          "en" : "Duration of reaction",
+          "nb" : "Reaksjonens varighet"
+        },
+        "localizedDescriptions" : {
+          "en" : "The total amount of time that the manifestation of the adverse reaction persisted.",
+          "nb" : "Den totale tidsperioden reaksjonsmanifestasjonen var tilstede."
+        },
+        "aqlPath" : "/data[at0001]/items[openEHR-EHR-CLUSTER.adverse_reaction_event.v1,'Reaksjon']/items[at0009]/value",
+        "inputs" : [ {
+          "suffix" : "year",
+          "type" : "INTEGER",
+          "validation" : {
+            "range" : {
+              "minOp" : ">=",
+              "min" : 0
+            }
+          }
+        }, {
+          "suffix" : "month",
+          "type" : "INTEGER",
+          "validation" : {
+            "range" : {
+              "minOp" : ">=",
+              "min" : 0
+            }
+          }
+        }, {
+          "suffix" : "day",
+          "type" : "INTEGER",
+          "validation" : {
+            "range" : {
+              "minOp" : ">=",
+              "min" : 0
+            }
+          }
+        }, {
+          "suffix" : "week",
+          "type" : "INTEGER",
+          "validation" : {
+            "range" : {
+              "minOp" : ">=",
+              "min" : 0
+            }
+          }
+        }, {
+          "suffix" : "hour",
+          "type" : "INTEGER",
+          "validation" : {
+            "range" : {
+              "minOp" : ">=",
+              "min" : 0
+            }
+          }
+        }, {
+          "suffix" : "minute",
+          "type" : "INTEGER",
+          "validation" : {
+            "range" : {
+              "minOp" : ">=",
+              "min" : 0
+            }
+          }
+        }, {
+          "suffix" : "second",
+          "type" : "INTEGER",
+          "validation" : {
+            "range" : {
+              "minOp" : ">=",
+              "min" : 0
+            }
+          }
+        } ]
+      }, {
+        "id" : "reaksjonens_alvorlighetsgrad",
+        "name" : "Reaksjonens alvorlighetsgrad",
+        "localizedName" : "Reaksjonens alvorlighetsgrad",
+        "rmType" : "DV_CODED_TEXT",
+        "nodeId" : "at0010",
+        "min" : 0,
+        "max" : 1,
+        "localizedNames" : {
+          "en" : "Severity of reaction",
+          "nb" : "Reaksjonens alvorlighetsgrad"
+        },
+        "localizedDescriptions" : {
+          "en" : "Clinical assessment of the severity of the reaction event as a whole, potentially considering multiple different manifestations.",
+          "nb" : "Klinisk vurdering av hendelsens alvorlighetsgrad som helhet, potensielt med vurderinger av de ulike manifestasjonene."
+        },
+        "annotations" : {
+          "comment" : "Det anerkjennes at denne vurderingen er svært subjektiv. Det kan være noen kliniske områder hvor objektive scoringer brukes. Objektive scoringer kan inkluderes i denne modellen ved bruk av SLOTet \"Reaksjonsdetaljer\"."
+        },
+        "aqlPath" : "/data[at0001]/items[openEHR-EHR-CLUSTER.adverse_reaction_event.v1,'Reaksjon']/items[at0010]/value",
+        "inputs" : [ {
+          "suffix" : "code",
+          "type" : "TEXT",
+          "terminology" : "//fhir.hl7.org/ValueSet/$expand?url=http://hl7.org/fhir/ValueSet/reaction-event-severity"
+        }, {
+          "suffix" : "value",
+          "type" : "TEXT",
+          "terminology" : "//fhir.hl7.org/ValueSet/$expand?url=http://hl7.org/fhir/ValueSet/reaction-event-severity"
+        } ]
+      } ]
+    }, {
+      "id" : "allergi_intoleranse_beskrivelse_note",
+      "name" : "Allergi/intoleranse beskrivelse  [note]",
+      "localizedName" : "Allergi/intoleranse beskrivelse  [note]",
+      "rmType" : "DV_TEXT",
+      "nodeId" : "at0006",
+      "min" : 0,
+      "max" : 1,
+      "localizedNames" : {
+        "en" : "Comment",
+        "nb" : "Allergi/intoleranse beskrivelse  [note]"
+      },
+      "localizedDescriptions" : {
+        "en" : "Additional narrative about the propensity for the adverse reaction, not captured in other fields.",
+        "nb" : "Ytterligere fritekstbeskrivelse om risikoen for overfølsomhetsreaksjon, som ikke fanges opp i andre felter."
+      },
+      "annotations" : {
+        "comment" : "For eksempel: Grunnlag for at \"Alvorlighetsgrad\" er satt til \"Høy\", instruksjoner relatert til fremtidige eksponeringer for eller administrasjon av substansen, som administrasjon ved en intensivenhet eller under kortikosteroidbehandling."
+      },
+      "aqlPath" : "/data[at0001]/items[at0006,'Allergi/intoleranse beskrivelse  [note]']/value",
+      "inputs" : [ {
+        "type" : "TEXT"
+      } ]
+    }, {
+      "id" : "sist_oppdatert",
+      "name" : "Sist oppdatert",
+      "localizedName" : "Sist oppdatert",
+      "rmType" : "DV_DATE_TIME",
+      "nodeId" : "at0062",
+      "min" : 0,
+      "max" : 1,
+      "dependsOn" : [ "alvorlighetsgrad_av_allergi_criticality", "code_agent_agens_code", "allergi_intoleranse_beskrivelse_note", "reaksjon", "kategori_category", "type_type", "bekreftelse_verificationstatus", "klinisk_status_clinicalstatus" ],
+      "localizedNames" : {
+        "en" : "Last updated",
+        "nb" : "Sist oppdatert"
+      },
+      "localizedDescriptions" : {
+        "en" : "Date when the propensity or the reaction event was updated.",
+        "nb" : "Dato da informasjonen sist ble oppdatert."
+      },
+      "aqlPath" : "/protocol[at0042]/items[at0062]/value",
+      "inputs" : [ {
+        "type" : "DATETIME"
+      } ]
+    }, {
+      "id" : "language",
+      "name" : "Language",
+      "rmType" : "CODE_PHRASE",
+      "min" : 1,
+      "max" : 1,
+      "aqlPath" : "/language",
+      "inContext" : true
+    }, {
+      "id" : "encoding",
+      "name" : "Encoding",
+      "rmType" : "CODE_PHRASE",
+      "min" : 1,
+      "max" : 1,
+      "aqlPath" : "/encoding",
+      "inContext" : true
+    }, {
+      "id" : "subject",
+      "name" : "Subject",
+      "rmType" : "PARTY_PROXY",
+      "min" : 1,
+      "max" : 1,
+      "aqlPath" : "/subject",
+      "inputs" : [ {
+        "suffix" : "id",
+        "type" : "TEXT"
+      }, {
+        "suffix" : "id_scheme",
+        "type" : "TEXT"
+      }, {
+        "suffix" : "id_namespace",
+        "type" : "TEXT"
+      }, {
+        "suffix" : "name",
+        "type" : "TEXT"
+      } ],
+      "inContext" : true
+    } ]
+  }
+}
